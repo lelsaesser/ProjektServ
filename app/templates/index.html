@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projekt Serverseitige Andwendungen</title>
+
+    <!--Das Bootstrap Web-Framework wird vom CDN (Content Delivery Network) eingebunden-->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <!--Eigene Stylesheets und Javascript Skripte werden eingebunden-->
+    <link href="../static/css/index.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/signUp.js"></script>
+
+ </head>
+<body>
+<div class="container">
+    <nav>
+        <ul class="nav nav-pills pull-right">
+            <!--class = active fügt dem Button ein css hinzu -->
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">Anmelden</a></li>
+            <li role="presentation"><a href="showSignUp">Registrieren</a></li>
+        </ul>
+    </nav>
+        <div class="jumbotron">
+            <h1>Food King</h1>
+            <p class="lead"></p>
+            <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Sign up today</a>
+            </p>
+        </div>
+        <div class="links">
+            <li><a href="#">Burger</a></li>
+            <li><a href="#">Asiatisch</a></li>
+            <li><a href="#">Pizzen</a></li>
+            <li><a href="#">Pasta</a></li>
+            <li><a href="#">Fisch</a></li>
+        </div>
+</div>
+</body>
+</html>
