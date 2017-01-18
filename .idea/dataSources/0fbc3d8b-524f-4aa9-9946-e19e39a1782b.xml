@@ -6,17 +6,53 @@
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
-    <table id="3" parent="2" name="food"/>
-    <column id="4" parent="3" name="food_id">
+    <table id="3" parent="2" name="customers"/>
+    <table id="4" parent="2" name="food"/>
+    <table id="5" parent="2" name="orders"/>
+    <table id="6" parent="2" name="sqlite_sequence"/>
+    <column id="7" parent="3" name="customer_id">
       <DataType>INTEGER(0,-1)|4</DataType>
     </column>
-    <column id="5" parent="3" name="title">
+    <column id="8" parent="3" name="customer_name">
       <Position>1</Position>
       <DataType>TEXT(0,-1)|12</DataType>
     </column>
-    <column id="6" parent="3" name="stock_value">
+    <column id="9" parent="3" name="order_id">
+      <Position>2</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="10" parent="3">
+      <ColNames>customer_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="11" parent="4" name="food_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="12" parent="4" name="title">
+      <Position>1</Position>
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <column id="13" parent="4" name="stock_value">
       <Position>2</Position>
       <DataType>REAL(0,-1)|6</DataType>
+    </column>
+    <column id="14" parent="5" name="order_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="15" parent="5" name="ordered_food_id">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="16" parent="5">
+      <ColNames>order_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="17" parent="6" name="name">
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="18" parent="6" name="seq">
+      <Position>1</Position>
+      <DataType>(0,-1)|12</DataType>
     </column>
   </database-model>
 </dataSource>

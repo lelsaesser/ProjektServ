@@ -20,13 +20,14 @@ app.config.update(dict(
 conn = sqlite3.connect('sqlite.db')
 c = conn.cursor()
 
+#Einfache funktion um die Datenbank zu erstellen
+def create_tables():
+    c.execute('CREATE TABLE IF NOT EXISTS food(food_id INTEGER PRIMARY KEY AUTOINCREMENT , title TEXT, stock_value REAL)')
+    c.execute('CREATE TABLE IF NOT EXISTS orders(order_id INTEGER PRIMARY KEY AUTOINCREMENT, ordered_food_id INTEGER)')
+    c.execute('CREATE TABLE IF NOT EXISTS customers(customer_id INTEGER PRIMARY KEY AUTOINCREMENT, customer_name TEXT, order_id INTEGER)')
 
-def create_table():
-    c.execute('CREATE TABLE IF NOT EXISTS food(food_id INTEGER, title TEXT, stock_value REAL)')
-    c.execute('CREATE TABLE IF NOT EXISTS orders(order_id INTEGER customer TEXT ordered_food_id INTEGER)')
 
-
-create_table()
+create_tables()
 #Diese Methode ermöglicht schnelle, einfache Verbindungen zu der definierten Datenbank
 """
 def connect_db():
