@@ -84,7 +84,6 @@ def showSignIn():
     return render_template('signin.html')
 
 
-<<<<<<< HEAD
 #JQuery AJAX schickt die Signup Daten per POST Methode zu dieser Funktion. Hier werden dann die User angelegt
 @app.route('/signUp', methods=['POST'])
 def signUp():
@@ -107,9 +106,6 @@ def signUp():
         return json.dumps({'html': '<span>Ungültige Eingabe!</span>'})
 
 
-
-=======
->>>>>>> origin/master
 
 if __name__ == '__main__':
     app.run(port=5000)
