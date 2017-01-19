@@ -1,3 +1,5 @@
+//Jquery AJAX wird benutzt um die signup request an die Python Methode zu schicken
+//Eine POST Methode für jquery wenn der Benutzer den Signup Knopf drückt
 $(function(){
 	$('#btnSignUp').click(function(){
 		

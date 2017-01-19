@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g, request, json
 import sqlite3
 import os
 
@@ -25,6 +25,9 @@ def create_tables():
     c.execute('CREATE TABLE IF NOT EXISTS food(food_id INTEGER PRIMARY KEY AUTOINCREMENT , title TEXT, stock_value REAL)')
     c.execute('CREATE TABLE IF NOT EXISTS orders(order_id INTEGER PRIMARY KEY AUTOINCREMENT, ordered_food_id INTEGER)')
     c.execute('CREATE TABLE IF NOT EXISTS customers(customer_id INTEGER PRIMARY KEY AUTOINCREMENT, customer_name TEXT, order_id INTEGER)')
+    c.execute('CREATE TABLE IF NOT EXISTS users(user_id INTEGER PRIMARY KEY AUTOINCREMENT, user_name TEXT, email TEXT, password TEXT)')
+
+
 
 
 create_tables()
@@ -79,6 +82,30 @@ def showSignUp():
 @app.route('/showSignIn')
 def showSignIn():
     return render_template('signin.html')
+
+
+#JQuery AJAX schickt die Signup Daten per POST Methode zu dieser Funktion. Hier werden dann die User angelegt
+@app.route('/signUp', methods=['POST'])
+def signUp():
+    _name = request.form['inputName']
+    _email = request.form['inputEmail']
+    _password = request.form['inputPassword']
+
+    #Überprüfe ob die Daten valide sind, dafür die Daten in json umwandeln
+    if _name and _email and _password:
+
+        conn = sqlite3.connect('sqlite.db')
+        c = conn.cursor()
+
+        c.execute("INSERT INTO users(user_name, email, password) VALUES (?, ?, ?)", (_name, _email, _password))
+        conn.commit()
+        return json.dumps({'html': '<span>Registrierung erfolgreich!</span>'})
+
+
+    else:
+        return json.dumps({'html': '<span>Ungültige Eingabe!</span>'})
+
+
 
 
 if __name__ == '__main__':
