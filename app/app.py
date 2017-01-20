@@ -27,10 +27,9 @@ def create_tables():
     c.execute('CREATE TABLE IF NOT EXISTS customers(customer_id INTEGER PRIMARY KEY AUTOINCREMENT, customer_name TEXT, order_id INTEGER)')
     c.execute('CREATE TABLE IF NOT EXISTS users(user_id INTEGER PRIMARY KEY AUTOINCREMENT, user_name TEXT, email TEXT, password TEXT)')
 
-
-
-
 create_tables()
+
+
 #Diese Methode ermöglicht schnelle, einfache Verbindungen zu der definierten Datenbank
 """
 def connect_db():
@@ -84,6 +83,7 @@ def showSignIn():
     return render_template('signin.html')
 
 
+#Diese Funktion wird aufgerufen wenn der Benutz
 #JQuery AJAX schickt die Signup Daten per POST Methode zu dieser Funktion. Hier werden dann die User angelegt
 @app.route('/signUp', methods=['POST'])
 def signUp():
@@ -99,12 +99,35 @@ def signUp():
 
         c.execute("INSERT INTO users(user_name, email, password) VALUES (?, ?, ?)", (_name, _email, _password))
         conn.commit()
+        c.close()
+        conn.close()
         return json.dumps({'html': '<span>Registrierung erfolgreich!</span>'})
 
 
     else:
         return json.dumps({'html': '<span>Ungültige Eingabe!</span>'})
 
+
+
+@app.route('/signIn', methods=['POST'])
+def signIn():
+    _email = request.form['inputEmail']
+    _password = request.form['inputPassword']
+
+    conn = sqlite3.connect('sqlite.db')
+    c = conn.cursor()
+
+    if _email and _password:
+        #Hier ist der Fehler: der Login funktioniert mit einer beliebigen Eingabe
+        if c.execute("SELECT email FROM users WHERE email = ? AND password = ?", (_email, _password)):
+            return json.dumps({'html': '<span>Anmeldung erfolgreich!</span>'})
+
+        else:
+            return json.dumbs({'html': '<span>Falsche Logindaten.</span>'})
+
+
+    else:
+        return json.dumps({'html': '<span>Bitte alle Felder ausfüllen</span>'})
 
 
 if __name__ == '__main__':
